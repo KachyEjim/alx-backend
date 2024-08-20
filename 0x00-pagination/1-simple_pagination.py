@@ -34,13 +34,13 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Returns a page"""
-        assert type(page) == int and type(page_size) == int
+        assert isinstance(page, int) and isinstance(page_size, int)
         assert page > 0 and page_size > 0
 
         indexes = index_range(page, page_size)
         data = self.dataset()
         try:
-            result = data[indexes[0] : indexes[1]]
+            result = data[indexes[0]:indexes[1]]
             return result
         except IndexError:
             return []

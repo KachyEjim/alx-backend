@@ -34,20 +34,20 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Returns a page"""
-        assert type(page) == int and type(page_size) == int
+        assert isinstance(page, int) and isinstance(page_size, int)
         assert page > 0 and page_size > 0
 
         indexes = index_range(page, page_size)
         data = self.dataset()
         try:
-            result = data[indexes[0] : indexes[1]]
+            result = data[indexes[0]:indexes[1]]
             return result
         except IndexError:
             return []
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Returns a page"""
-        assert type(page) == int and type(page_size) == int
+        assert isinstance(page, int) and isinstance(page_size, int)
         assert page > 0 and page_size > 0
 
         indexes = index_range(page, page_size)
@@ -55,7 +55,7 @@ class Server:
         total_page = math.ceil(data.__len__() / page_size)
 
         try:
-            result = data[indexes[0] : indexes[1]]
+            result = data[indexes[0]:indexes[1]]
         except IndexError:
             result = []
         next_page = page + 1 if (page + 1) <= total_page else None
